@@ -1,4 +1,6 @@
+import 'package:ally/components/dashboard/dashboard.dart';
 import 'package:ally/views/auth/login_screen.dart';
+import 'package:ally/views/home/post_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
 import 'package:provider/provider.dart';
@@ -16,17 +18,16 @@ class HomeView extends StatelessWidget {
           children: [
             Container(
               height: 100.0,
-              padding: const EdgeInsets.all(16.0),
-              decoration: const BoxDecoration(color: Colors.red),
+              padding: const EdgeInsets.fromLTRB(16, 16, 16, 20),
               child: const Align(
                 alignment: Alignment.bottomLeft,
-                child: Text(
-                  'Drawer Header',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 24,
-                    fontWeight: FontWeight.bold,
-                  ),
+                child: Column(
+                  children: [
+                    CircleAvatar(
+                      radius: 24, // Adjust size
+                      backgroundImage: AssetImage('assets/images/emptyDP.png'),
+                    ),
+                  ],
                 ),
               ),
             ),
@@ -287,6 +288,7 @@ class HomeView extends StatelessWidget {
           ],
         ),
       ),
+      body: const Dashboard(),
     );
   }
 }

@@ -21,7 +21,7 @@ class User {
     return {
       'uid': uid,
       'uname': uname,
-      'passwordHash': passwordHash, // Added this
+      'passwordHash': passwordHash,
       'imageUrl': imageUrl,
       'isAdmin': isAdmin ? 1 : 0,
       'occupation': occupation,
