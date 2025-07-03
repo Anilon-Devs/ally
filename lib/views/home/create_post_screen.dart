@@ -45,10 +45,14 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
       }
 
       if (permission == LocationPermission.deniedForever) {
-        throw Exception('Location permissions are permanently denied, we cannot request permissions.');
+        throw Exception(
+          'Location permissions are permanently denied, we cannot request permissions.',
+        );
       }
 
-      _currentPosition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+      _currentPosition = await Geolocator.getCurrentPosition(
+        desiredAccuracy: LocationAccuracy.high,
+      );
       _locationMessage = "Location Acquired!";
     } catch (e) {
       _currentPosition = null;
@@ -65,7 +69,11 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
     if (_formKey.currentState!.validate()) {
       if (_currentPosition == null) {
         ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Cannot create post without location. Please enable permissions and try again.')),
+          const SnackBar(
+            content: Text(
+              'Cannot create post without location. Please enable permissions and try again.',
+            ),
+          ),
         );
         return;
       }
@@ -89,7 +97,9 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
       await postViewModel.addPost(newPost);
 
       if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Post created successfully!')));
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Post created successfully!')),
+        );
         Navigator.of(context).pop();
       }
     }
@@ -114,16 +124,34 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
             children: [
               TextFormField(
                 controller: _descriptionController,
-                decoration: const InputDecoration(labelText: 'What\'s happening?', alignLabelWithHint: true),
+                decoration: const InputDecoration(
+                  labelText: 'What\'s happening?',
+                  alignLabelWithHint: true,
+                ),
                 maxLines: 6,
-                validator: (value) => value!.trim().isEmpty ? 'Please enter a description' : null,
+                validator:
+                    (value) =>
+                        value!.trim().isEmpty
+                            ? 'Please enter a description'
+                            : null,
               ),
               const SizedBox(height: 20),
               DropdownButtonFormField<ZoneType>(
                 value: _selectedZoneType,
-                decoration: const InputDecoration(labelText: 'Select Zone Type'),
-                items: ZoneType.values.map((type) => DropdownMenuItem(value: type, child: Text(type.name))).toList(),
-                onChanged: (newValue) => setState(() => _selectedZoneType = newValue!),
+                decoration: const InputDecoration(
+                  labelText: 'Select Zone Type',
+                ),
+                items:
+                    ZoneType.values
+                        .map(
+                          (type) => DropdownMenuItem(
+                            value: type,
+                            child: Text(type.name),
+                          ),
+                        )
+                        .toList(),
+                onChanged:
+                    (newValue) => setState(() => _selectedZoneType = newValue!),
               ),
               const SizedBox(height: 20),
               // Location Information Widget
@@ -136,7 +164,11 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                 child: Row(
                   children: [
                     if (_isFetchingLocation)
-                      const SizedBox(height: 20, width: 20, child: CircularProgressIndicator(strokeWidth: 3)),
+                      const SizedBox(
+                        height: 20,
+                        width: 20,
+                        child: CircularProgressIndicator(strokeWidth: 3),
+                      ),
                     if (!_isFetchingLocation && _currentPosition != null)
                       const Icon(Icons.location_on, color: Colors.green),
                     if (!_isFetchingLocation && _currentPosition == null)
@@ -146,14 +178,22 @@ class _CreatePostScreenState extends State<CreatePostScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Text(_locationMessage, style: const TextStyle(fontWeight: FontWeight.bold)),
+                          Text(
+                            _locationMessage,
+                            style: const TextStyle(fontWeight: FontWeight.bold),
+                          ),
                           if (_currentPosition != null)
-                            Text('Lat: ${_currentPosition!.latitude.toStringAsFixed(4)}, Lon: ${_currentPosition!.longitude.toStringAsFixed(4)}'),
+                            Text(
+                              'Lat: ${_currentPosition!.latitude.toStringAsFixed(4)}, Lon: ${_currentPosition!.longitude.toStringAsFixed(4)}',
+                            ),
                         ],
                       ),
                     ),
                     if (!_isFetchingLocation && _currentPosition == null)
-                      IconButton(icon: const Icon(Icons.refresh), onPressed: _getCurrentLocation)
+                      IconButton(
+                        icon: const Icon(Icons.refresh),
+                        onPressed: _getCurrentLocation,
+                      ),
                   ],
                 ),
               ),
