@@ -11,11 +11,24 @@ class HomeView extends StatelessWidget {
       drawer: Drawer(
         child: ListView(
           children: [
-            DrawerHeader(
-              decoration: BoxDecoration(
+            Container(
+              height: 100.0, // <-- SET YOUR CUSTOM HEIGHT HERE
+              padding: const EdgeInsets.all(16.0), // Optional: Add padding
+              decoration: const BoxDecoration(
                 color: Colors.red,
               ),
-              child: Text('Drawer Header'),
+              // Align the content to the bottom-left corner
+              child: const Align(
+                alignment: Alignment.bottomLeft,
+                child: Text(
+                  'Drawer Header',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 24,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ),
             ListTile(
               title: Row(
@@ -184,6 +197,87 @@ class HomeView extends StatelessWidget {
               onTap: () {
                 // Navigator.pop(context);
               },
+            ),
+            SizedBox(
+              height: 40,
+            ),
+            ListTile(
+              title: Container(
+                decoration: BoxDecoration(
+                  border: Border(
+                      bottom:
+                          BorderSide(width: 0.8, color: Colors.grey.shade300)),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 10),
+                      child: Text(
+                        'Help Center',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                    HugeIcon(
+                      icon: HugeIcons.strokeRoundedArrowRight01,
+                      size: 24.0,
+                      color: Color(0xFF000000),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            ListTile(
+              title: Container(
+                decoration: BoxDecoration(
+                  border: Border(
+                    bottom: BorderSide(width: 0.8, color: Colors.grey.shade300),
+                  ),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 10),
+                      child: Text(
+                        'Request Feature',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                    HugeIcon(
+                      icon: HugeIcons.strokeRoundedArrowRight01,
+                      size: 24.0,
+                      color: Color(0xFF000000),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            ListTile(
+              title: Container(
+                decoration: BoxDecoration(
+                  border: Border(
+                      bottom:
+                          BorderSide(width: 0.8, color: Colors.grey.shade300)),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(bottom: 10),
+                      child: Text(
+                        'Log out',
+                        style: TextStyle(fontSize: 16),
+                      ),
+                    ),
+                    HugeIcon(
+                      icon: HugeIcons.strokeRoundedLogoutSquare01,
+                      size: 24.0,
+                      color: Color(0xFF000000),
+                    ),
+                  ],
+                ),
+              ),
             ),
           ],
         ),
