@@ -1,5 +1,8 @@
+import 'package:ally/views/auth/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:provider/provider.dart';
+import '../../viewmodels/auth_viewmodel.dart';
 
 class HomeView extends StatelessWidget {
   const HomeView({super.key});
@@ -12,12 +15,9 @@ class HomeView extends StatelessWidget {
         child: ListView(
           children: [
             Container(
-              height: 100.0, // <-- SET YOUR CUSTOM HEIGHT HERE
-              padding: const EdgeInsets.all(16.0), // Optional: Add padding
-              decoration: const BoxDecoration(
-                color: Colors.red,
-              ),
-              // Align the content to the bottom-left corner
+              height: 100.0,
+              padding: const EdgeInsets.all(16.0),
+              decoration: const BoxDecoration(color: Colors.red),
               child: const Align(
                 alignment: Alignment.bottomLeft,
                 child: Text(
@@ -41,9 +41,7 @@ class HomeView extends StatelessWidget {
                         size: 28.0,
                         color: Color(0xFF000000),
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
+                      SizedBox(width: 10),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,7 +49,9 @@ class HomeView extends StatelessWidget {
                           Text(
                             'Settings',
                             style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           Text(
                             'Account Settings',
@@ -83,9 +83,7 @@ class HomeView extends StatelessWidget {
                         size: 28.0,
                         color: Color(0xFF000000),
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
+                      SizedBox(width: 10),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -93,7 +91,9 @@ class HomeView extends StatelessWidget {
                           Text(
                             'Verify',
                             style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           Text(
                             'Verify your identity',
@@ -125,9 +125,7 @@ class HomeView extends StatelessWidget {
                         size: 28.0,
                         color: Color(0xFF000000),
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
+                      SizedBox(width: 10),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -135,7 +133,9 @@ class HomeView extends StatelessWidget {
                           Text(
                             'Chat',
                             style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           Text(
                             'Chat offline with others',
@@ -167,9 +167,7 @@ class HomeView extends StatelessWidget {
                         size: 28.0,
                         color: Color(0xFF000000),
                       ),
-                      SizedBox(
-                        width: 10,
-                      ),
+                      SizedBox(width: 10),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -177,7 +175,9 @@ class HomeView extends StatelessWidget {
                           Text(
                             'Bookmarks',
                             style: TextStyle(
-                                fontSize: 16, fontWeight: FontWeight.bold),
+                              fontSize: 16,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           Text(
                             'Saved aid locations',
@@ -198,15 +198,13 @@ class HomeView extends StatelessWidget {
                 // Navigator.pop(context);
               },
             ),
-            SizedBox(
-              height: 40,
-            ),
+            SizedBox(height: 40),
             ListTile(
               title: Container(
                 decoration: BoxDecoration(
                   border: Border(
-                      bottom:
-                          BorderSide(width: 0.8, color: Colors.grey.shade300)),
+                    bottom: BorderSide(width: 0.8, color: Colors.grey.shade300),
+                  ),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -254,21 +252,28 @@ class HomeView extends StatelessWidget {
               ),
             ),
             ListTile(
+              onTap: () {
+                Navigator.of(context).pop(); // Close the drawer
+                context.read<AuthViewModel>().logout(); // Call logout
+                if (context.mounted) {
+                  Navigator.of(context).pushAndRemoveUntil(
+                    MaterialPageRoute(builder: (_) => LoginScreen()),
+                    (route) => false,
+                  );
+                }
+              },
               title: Container(
                 decoration: BoxDecoration(
                   border: Border(
-                      bottom:
-                          BorderSide(width: 0.8, color: Colors.grey.shade300)),
+                    bottom: BorderSide(width: 0.8, color: Colors.grey.shade300),
+                  ),
                 ),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Padding(
                       padding: EdgeInsets.only(bottom: 10),
-                      child: Text(
-                        'Log out',
-                        style: TextStyle(fontSize: 16),
-                      ),
+                      child: Text('Log out', style: TextStyle(fontSize: 16)),
                     ),
                     HugeIcon(
                       icon: HugeIcons.strokeRoundedLogoutSquare01,
