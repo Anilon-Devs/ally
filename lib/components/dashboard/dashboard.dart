@@ -1,4 +1,8 @@
 import 'package:ally/views/home/post_list_screen.dart';
+import 'package:ally/views/quickactions/aid_areas.dart';
+import 'package:ally/views/quickactions/req_help.dart';
+import 'package:ally/views/quickactions/safe_areas.dart';
+import 'package:ally/views/quickactions/war_areas.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hugeicons/hugeicons.dart';
@@ -127,7 +131,12 @@ class Dashboard extends StatelessWidget {
                       children: [
                         ElevatedButton(
                           onPressed: () {
-                            // Your action here, e.g., navigation or opening a link
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => WarAreas(),
+                              ),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             shape: const CircleBorder(),
@@ -154,7 +163,12 @@ class Dashboard extends StatelessWidget {
                       children: [
                         ElevatedButton(
                           onPressed: () {
-                            // Your action here, e.g., navigation or opening a link
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AidAreas(),
+                              ),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             shape: const CircleBorder(),
@@ -181,7 +195,12 @@ class Dashboard extends StatelessWidget {
                       children: [
                         ElevatedButton(
                           onPressed: () {
-                            // Your action here, e.g., navigation or opening a link
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => SafeAreas(),
+                              ),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             shape: const CircleBorder(),
@@ -208,7 +227,12 @@ class Dashboard extends StatelessWidget {
                       children: [
                         ElevatedButton(
                           onPressed: () {
-                            // Your action here, e.g., navigation or opening a link
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => ReqHelp(),
+                              ),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             shape: const CircleBorder(),
