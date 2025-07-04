@@ -38,11 +38,14 @@ dependencies:
   cupertino_icons: ^1.0.8
   provider: ^6.1.5
   crypto: ^3.0.6
-  geolocator: ^14.0.2
+  geolocator: ^14.0.2   
   url_launcher: ^6.3.1
   hugeicons: ^0.0.11
   google_fonts: ^6.2.1
   image_picker: ^1.1.2
+  dotenv: ^4.2.0
+  flutter_map: ^8.1.1
+  latlong2: ^0.9.1
 
 dev_dependencies:
   flutter_test:
